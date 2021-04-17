@@ -7,7 +7,6 @@ import AccordianList from './Components/AccordianList'
 
 const App = (props) => {
   const [blogData, setBlogData] = useState([])
-  const [blogItems, setBlogItems] = useState([])
 
   const url = 'https://dct-cors.herokuapp.com/https://www.feedforall.com/blog-feed.xml'
 
@@ -33,7 +32,7 @@ const App = (props) => {
   return (
     <Container>
       <Typography variant='h3' align='center'>Blog Data</Typography>
-      {blogData.length > 0 && <AccordianList blogData={blogData} handleBtn={handleBtn} />}
+      {blogData.length > 0 && <AccordianList blogData={blogData}  />}
     </Container>
   )
 }
