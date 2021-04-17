@@ -17,16 +17,10 @@ const App = (props) => {
     axios.get(url)
          .then((response) => {
            const data = response.data
-           parseString(data, function (err, result) {
-           console.log(result?.rss?.channel[0]?.item)
+           parseString(data, function (err, result) {   // to convert xml json to js object
+           
+           // fetching the items array from the data
            setBlogData(result?.rss?.channel[0]?.item)
-
-           const result1 = result?.rss?.channel[0]?.item.filter((ele,i) => {
-               if(i < 15){
-                 return ele
-               }
-           })
-           setBlogItems(result1)
          });
          })
          .catch((err) => {
@@ -34,17 +28,7 @@ const App = (props) => {
          })
   },[])
 
-  const handleBtn = () => {
-    const arr = blogData.filter((blog,i) => {
-         if(i < (blogItems.length + 15)){
-           return blog
-         }
-    })
-    console.log(arr)
-
-    setBlogItems(arr)
-    
-}
+  
 
   return (
     <Container>

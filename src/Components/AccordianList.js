@@ -52,9 +52,9 @@ const AccordionDetails = withStyles((theme) => ({
 
 
 
-
+// -------AccordianList Component-------
 const AccordianList = (props) => {
-  const {blogData, handleBtn} = props
+  const {blogData} = props
   const [expanded, setExpanded] = React.useState('panel0');
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -88,7 +88,7 @@ const AccordianList = (props) => {
                 )
             }else{
                 return (
-                    <Accordion  style={{marginBottom: '10px'}} square expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
+                    <Accordion key={i}  style={{marginBottom: '10px'}} square expanded={expanded === `panel${i}`} onChange={handleChange(`panel${i}`)}>
                      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls={`panel${i}d-content`} id={`panel${i}d-header`}>
                        <Typography>{i + 1}. {blog.title[0]}</Typography>
                      </AccordionSummary>

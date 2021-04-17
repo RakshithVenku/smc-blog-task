@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Spinner Loader
 const Spinner = () => (
     <div className="post loading">
       <svg
