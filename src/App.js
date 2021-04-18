@@ -1,38 +1,27 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import AccordianList from './Components/AccordianList'
-
+import React, { useState, useEffect } from 'react'
+import {Container, Paper} from '@material-ui/core'
+import NavBar from './Components/NavBar'
 
 const App = (props) => {
-  const [blogData, setBlogData] = useState([])
+  const [userLoggedIn, setUserLoggedIn] = useState(false)
 
-  const url = 'https://dct-cors.herokuapp.com/https://www.feedforall.com/blog-feed.xml'
-
-  let parseString = require('xml2js').parseString
+  const handleAuth = () => {
+    setUserLoggedIn(!userLoggedIn)
+  }
 
   useEffect(() => {
-    axios.get(url)
-         .then((response) => {
-           const data = response.data
-           parseString(data, function (err, result) {   // to convert xml json to js object
-           
-           // fetching the items array from the data
-           setBlogData(result?.rss?.channel[0]?.item)
-         });
-         })
-         .catch((err) => {
-           console.log(err.message)
-         })
-  },[])
-
-  
+    if(localStorage.getItem('token')){
+      handleAuth()
+    }
+  }, [])
 
   return (
-    <Container>
-      <Typography variant='h3' align='center'>Blog Data</Typography>
-      {blogData.length > 0 && <AccordianList blogData={blogData}  />}
+    <Container component="main" >
+      <Paper elevation={8}>
+        <div style={{minHeight: "580px"}}>
+        <NavBar userLoggedIn={userLoggedIn} handleAuth={handleAuth}/>
+        </div>
+        </Paper>
     </Container>
   )
 }
