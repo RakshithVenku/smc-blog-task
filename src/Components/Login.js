@@ -51,7 +51,7 @@ const Login = (props) => {
     
             //if validations pass
     
-            axios.post('http://dct-user-auth.herokuapp.com/users/login', formData)
+            axios.post('https://dct-user-auth.herokuapp.com/users/login', formData)
                  .then((response) => {
                      const result = response.data
                      if(result.hasOwnProperty('errors')){

@@ -57,7 +57,7 @@ const Register = (props) => {
                 password : password
             }
     
-            axios.post('http://dct-user-auth.herokuapp.com/users/register', formData)
+            axios.post('https://dct-user-auth.herokuapp.com/users/register', formData)
                  .then((response) => {
                      const result = response.data
                      if(result.hasOwnProperty('errors')){
